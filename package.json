@@ -1,0 +1,16 @@
+{
+  "name": "@nghive/eslint-config",
+  "version": "0.0.1",
+  "description": "My super opinionated eslint configurations for TypeScript, Angular (including templates), Nx, etc...",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": ["eslint", "config", "typescript", "angular", "nx"],
+  "author": {
+    "name": "Fabien Dehopré",
+    "email": "fabien@dehopre.dev",
+    "url": "https://mastodon.dehopre.dev/@fabien"
+  },
+  "license": "MIT"
+}
