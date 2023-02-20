@@ -1,5 +1,27 @@
 'use strict';
 
+const classesAndClassExpressionsOrder = [
+  '#private-static-field',
+  'private-static-field',
+  'protected-static-field',
+  'public-static-field',
+
+  'static-initialization',
+
+  '#private-instance-field',
+  'private-instance-field',
+  // TODO
+
+  'constructor',
+
+
+
+  "public-static-method",
+  "protected-static-method",
+  "private-static-method",
+  "#private-static-method",
+];
+
 module.exports = {
   plugins: ['import', 'no-null', 'prefer-arrow', 'unicorn'],
   extends: ['eslint:recommended', 'plugin:@typescript-eslint/recommended', 'plugin:@typescript-eslint/recommended-requiring-type-checking'],
@@ -31,7 +53,14 @@ module.exports = {
       },
     ],
     '@typescript-eslint/explicit-member-accessibility': ['error', { accessibility: 'no-public' }],
-    '@typescript-eslint/member-ordering': 'warn', // todo: switch back to error when rule supports "accessor" (get/set) https://github.com/typescript-eslint/typescript-eslint/issues/4038
+    '@typescript-eslint/member-ordering': [
+      'error',
+      {
+        'default': ['call-signature', 'signature', 'field', ['get', 'set'], 'constructor', 'method'],
+        'classes': classesAndClassExpressionsOrder,
+        'classExpressions': classesAndClassExpressionsOrder,
+      }
+    ],
     '@typescript-eslint/method-signature-style': 'error',
     '@typescript-eslint/naming-convention': [
       'error',
@@ -143,7 +172,7 @@ module.exports = {
         message: '`with` is disallowed in strict mode because it makes code impossible to predict and optimize.',
       },
       {
-        selector: "CallExpression[callee.name='setTimeout'][arguments.length!=2]",
+        selector: 'CallExpression[callee.name='setTimeout'][arguments.length!=2]',
         message: 'setTimeout must always be invoked with two arguments.',
       },
     ],
