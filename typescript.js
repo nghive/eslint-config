@@ -14,12 +14,10 @@ const classesAndClassExpressionsOrder = [
 
   'constructor',
 
-
-
-  "public-static-method",
-  "protected-static-method",
-  "private-static-method",
-  "#private-static-method",
+  'public-static-method',
+  'protected-static-method',
+  'private-static-method',
+  '#private-static-method',
 ];
 
 module.exports = {
@@ -56,10 +54,10 @@ module.exports = {
     '@typescript-eslint/member-ordering': [
       'error',
       {
-        'default': ['call-signature', 'signature', 'field', ['get', 'set'], 'constructor', 'method'],
-        'classes': classesAndClassExpressionsOrder,
-        'classExpressions': classesAndClassExpressionsOrder,
-      }
+        default: ['call-signature', 'signature', 'field', ['get', 'set'], 'constructor', 'method'],
+        classes: classesAndClassExpressionsOrder,
+        classExpressions: classesAndClassExpressionsOrder,
+      },
     ],
     '@typescript-eslint/method-signature-style': 'error',
     '@typescript-eslint/naming-convention': [
@@ -172,8 +170,14 @@ module.exports = {
         message: '`with` is disallowed in strict mode because it makes code impossible to predict and optimize.',
       },
       {
-        selector: 'CallExpression[callee.name='setTimeout'][arguments.length!=2]',
+        selector: 'CallExpression[callee.name="setTimeout"][arguments.length!=2]',
         message: 'setTimeout must always be invoked with two arguments.',
+      },
+      {
+        selector:
+          'ClassDeclaration:has(Decorator :matches([name="Component"], [name="Injectable"])) :matches(PropertyDefinition[key.name="intercept"], PropertyDefinition[key.name="ngOnChanges"], PropertyDefinition[key.name="ngOnInit"], PropertyDefinition[key.name="ngDoCheck"], PropertyDefinition[key.name="ngAfterContentInit"], PropertyDefinition[key.name="ngAfterContentChecked"], PropertyDefinition[key.name="ngAfterViewInit"], PropertyDefinition[key.name="ngAfterViewChecked"], PropertyDefinition[key.name="ngOnDestroy"]) > ArrowFunctionExpression',
+        message:
+          'Angular hooks need to be functions defined on the prototype: https://github.com/angular/angular/issues/7270#issuecomment-201137617',
       },
     ],
     'no-return-await': 'error',
