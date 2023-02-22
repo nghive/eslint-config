@@ -1,0 +1,6 @@
+.DS_Store
+node_modules/
+haters/
+test-code/
+package-lock.json
+yarn.lock
